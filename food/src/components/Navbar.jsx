@@ -10,7 +10,8 @@ export default class Navbar extends React.Component{
                 <button>Home</button>
                 <button>Login</button>
                 <button>Sign up</button>
-                <button>Restaurant</button>
+                <input type="search" placeholder="restaurant"></input>
+                <button>Search</button>
             </div>
         )
     }
