@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header'
-import Navbar from './components/Navbar';
+import {Provider} from 'react-redux';
+import Routes from './components/Routes';
 
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
     <div>
       {/* <h1>Deliver Food</h1> */}
       <Header/>
-      
+      <Routes/>
     </div>
   );
 }

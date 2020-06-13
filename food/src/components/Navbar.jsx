@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react';
 
 export default class Navbar extends React.Component{
     constructor(props){
@@ -7,11 +8,12 @@ export default class Navbar extends React.Component{
     render(){
         return(
             <div>
-                <button>Home</button>
-                <button>Login</button>
-                <button>Sign up</button>
+                <Link to="/" >HOME</Link>
+                <Link to="/" >LOGIN</Link>
+                <Link to="/" >SIGN UP</Link>
+                <Link to="/" >RESTAURANT</Link>
                 <input type="search" placeholder="restaurant"></input>
-                <button>Search</button>
+                <button >Search</button>
             </div>
         )
     }

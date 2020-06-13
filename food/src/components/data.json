@@ -1,6 +1,4 @@
 [
-    {"restaurant-name":"suprabhat",
-        "restaurant-data":[
         {
         "item":"biryani",
         "price":300,
@@ -167,11 +165,7 @@
         "cost-for-two":180,
         "restaurant":"Taj",
         "img":"https://i.imgur.com/JdRqOYCb.jpg"
-    }]
     },
-    {
-        "restaurant-name":"Taj",
-        "restaurant-data":[
         {
         "item":"biryani",
         "price":300,
@@ -338,6 +332,6 @@
         "cost-for-two":180,
         "restaurant":"Taj",
         "img":"https://i.imgur.com/JdRqOYCb.jpg"
-    }]
     }
+    
 ]
