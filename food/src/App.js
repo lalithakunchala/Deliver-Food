@@ -1,18 +1,43 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header'
-import {Provider} from 'react-redux';
+import { connect } from "react-redux";
+import store from './redux/store';
+import Navbar from './components/Navbar';
 import Routes from './components/Routes';
+import Header from './components/Header';
+import { deleteitem, additem,adddish } from './redux/action';
+import {BrowserRoute} from "react-router-dom";
 
-
-function App() {
-  return (
-    <div>
-      {/* <h1>Deliver Food</h1> */}
-      <Header/>
-      <Routes/>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  render(){
+      console.log(store.getState())
+      const {dishes} = store.getState();
+    return (
+      
+      <div>
+        <Header/>
+        <Navbar/> 
+        <Routes/>                                                                  
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  order: state.order,
+  dishes:state.dishes
+});
+
+const mapDispatchToProps = dispatch => ({
+  add: item => dispatch(adddish(item)),
+  remove: item => dispatch(deleteitem(item)),
+  complete: item => dispatch(additem(item))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

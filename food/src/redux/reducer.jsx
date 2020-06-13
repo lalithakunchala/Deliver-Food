@@ -1,5 +1,5 @@
-import {ORDER,ADDDISH, DELETEITEM} from "./actionTypes";
-import data from '../data.json'
+import {ORDER,ADDDISH, DELETEITEM,ADDITEM} from "./actionTypes";
+import data from '../components/data.json'
 
 const initState = {
     value:0,
@@ -7,13 +7,13 @@ const initState = {
     dishes :data
 }
 
-export default reducer = (state=initState,action)=>{
+const  reducer = (state=initState,action)=>{
     switch(action.type){
         case ORDER:
             return {
                 ...state,
                 value : state.value +1,
-                order : [...order,action.payload]
+                order : [...state.order,action.payload]
             }
 
             case ADDDISH:
@@ -36,3 +36,5 @@ export default reducer = (state=initState,action)=>{
             return state;
     }
 }
+
+export default reducer;
