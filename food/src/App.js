@@ -5,6 +5,7 @@ import store from './redux/store';
 import Navbar from './components/Navbar';
 import Routes from './components/Routes';
 import Header from './components/Header';
+import User from './components/User';
 import { deleteitem, additem,adddish } from './redux/action';
 import {BrowserRoute} from "react-router-dom";
 
@@ -18,8 +19,7 @@ class App extends React.Component {
     return (
       
       <div>
-        <Header/>
-        <Navbar/> 
+        
         <Routes/>                                                                  
       </div>
     );

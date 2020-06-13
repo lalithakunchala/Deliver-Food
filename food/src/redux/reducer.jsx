@@ -22,15 +22,24 @@ const  reducer = (state=initState,action)=>{
                 dishes : [...state.dishes,action.payload]
             }
             case ADDITEM:
+                console.log(action.payload)
+                var item = state.dishes.filter(ele=>{
+                    return ele.id===action.payload
+                })
+                console.log(item);
             return {
                 ...state,
-                order : [...state.order,action.payload]
+                order : [...state.order,item]
             }
             case DELETEITEM:
 
+            var arr = state.order.filter(item=>{
+                return item.id!==action.payload
+            })
+
             return {
                 ...state,
-                dishes : [...state.dishes,action.payload]
+                order : arr
             }
             default :
             return state;

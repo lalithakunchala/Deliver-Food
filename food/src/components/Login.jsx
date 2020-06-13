@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from './Home';
+import Header from './Header';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export default class Login extends React.Component {
     };
   
     handleAuth = () => {
-      if (this.state.name === "admin" && this.state.password === "admin") {
+      if (this.state.name === "lalitha" && this.state.password === "admin") {
         this.setState({
           isAuth: !this.state.isAuth
         });
@@ -37,8 +38,9 @@ export default class Login extends React.Component {
       console.log(this.state.data);
       return (
         <div>
+          <Header />
           {isAuth ? (
-            <div>
+            <div style={{textAlign:"center"}}>
               <h1>Login</h1>
               <input
                 type="text"
@@ -47,6 +49,7 @@ export default class Login extends React.Component {
                 placeholder="name"
                 onChange={this.handleChange}
               />
+              <br/>
               <input
                 type="password"
                 name="password"
@@ -54,11 +57,12 @@ export default class Login extends React.Component {
                 placeholder="password"
                 onChange={this.handleChange}
               />
-              <button onClick={this.handleAuth}>ADD</button>
+              <br/>
+              <button onClick={this.handleAuth}>Login</button>
             </div>
           ) : (
             
-              <Home />
+              <Home/>
           )}
         </div>
       );

@@ -7,6 +7,7 @@
     text-align: center;
     font-size: 30px;
     font-style: oblique;
+
 }
 
 .routes *{
@@ -14,4 +15,31 @@
     padding:20px;
     font-size: 20px;
     color:white;
+    padding-top:0px ;
+}
+
+.restcard{
+    display:grid;
+    grid-template-columns: 32% 32% 32%;
+    /* grid-template-rows: auto auto auto; */
+    /* justify-content: space-around; */
+    margin: auto;
+    margin-bottom: 20px;
+    width: 1500px;
+}
+
+.restcard div{
+    margin-bottom: 30px;
+    
+}
+
+.restcard img{
+    width:100%;
+    height:250px;
+}
+
+.cart{
+    height:50px;
+    width:50px;
+    float:right;
 }
