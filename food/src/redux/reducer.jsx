@@ -4,7 +4,7 @@ import data from '../components/data.json'
 const initState = {
     value:0,
     order:[],
-    dishes :data
+    dishes :[...data]
 }
 
 const  reducer = (state=initState,action)=>{
@@ -23,19 +23,18 @@ const  reducer = (state=initState,action)=>{
             }
             case ADDITEM:
                 console.log(action.payload)
-                var item = state.dishes.filter(ele=>{
-                    return ele.id===action.payload
-                })
-                console.log(item);
+                var ord = state.dishes.find(ele => ele.id===Number(action.payload));
+                console.log(ord);
             return {
                 ...state,
-                order : [...state.order,item]
+                order : [...state.order,ord]
             }
             case DELETEITEM:
-
+            console.log(action.payload);
             var arr = state.order.filter(item=>{
-                return item.id!==action.payload
+                return item.id!==Number(action.payload)
             })
+            console.log(arr);
 
             return {
                 ...state,

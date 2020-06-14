@@ -5,12 +5,14 @@ import Header from './Header';
 import { connect } from "react-redux";
 import { deleteitem, additem,adddish } from '../redux/action';
 
-export default class Order extends React.Component{
+class Order extends React.Component{
     constructor(props){
         super(props)
     }
     render(){
         const {order} = store.getState();
+        console.log(store.getState());
+        const {additem, deleteitem} = this.props;
         return(
         <>
             <Header/>
@@ -31,7 +33,7 @@ export default class Order extends React.Component{
                     
                     </ul>
                     <div class="card-body">
-                    <button id={item.id}onClick ={(e)=>deleteitem(e.target.id)}class="card-link text-white bg-primary">Remove Order</button>
+                    <button id={item.id} onClick ={(e)=>deleteitem(e.target.id)}class="card-link text-white bg-primary">Remove Order</button>
                     {/* <a href="#" class="card-link">Another link</a> */}
                     </div>
                     </div>
@@ -41,3 +43,19 @@ export default class Order extends React.Component{
                 </div>         
         </>
         )}}
+
+        const mapStateToProps = state => ({
+            order: state.order,
+            dishes:state.dishes
+          });
+          
+          const mapDispatchToProps = dispatch => ({
+            adddish: item => dispatch(adddish(item)),
+            deleteitem: item => dispatch(deleteitem(item)),
+            additem : item => dispatch(additem(item))
+          });
+          
+          export default connect(
+            mapStateToProps,
+            mapDispatchToProps
+          )(Order);
