@@ -5,3 +5,5 @@ export const ADDITEM = "ADDITEM";
 export const DELETEITEM = "DELETEITEM";
 export const RESTAURANT = "RESTAURANT";
 export const ITEMSEARCH = "ITEMSEARCH";
+export const ISAUTH = "ISAUTH";
+export const ISADMIN = "ISADMIN";

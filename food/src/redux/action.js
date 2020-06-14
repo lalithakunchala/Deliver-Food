@@ -1,4 +1,4 @@
-import {ORDERLESS,ORDERMORE,ADDDISH,ADDITEM,DELETEITEM,RESTAURANT,ITEMSEARCH} from './actionTypes';
+import {ORDERLESS,ORDERMORE,ADDDISH,ADDITEM,DELETEITEM,RESTAURANT,ITEMSEARCH,ISAUTH,ISADMIN} from './actionTypes';
 
 export const ordermore = (payload)=>({
     type:ORDERMORE,
@@ -12,6 +12,11 @@ export const orderless = (payload)=>({
 
 export const adddish = (payload)=>({
     type:ADDDISH,
+    payload
+})
+
+export const isAuth = (payload)=>({
+    type:ISAUTH,
     payload
 })
 
@@ -32,5 +37,10 @@ export const restaurant = (payload)=>({
 
 export const itemSearch = (payload)=>({
     type:ITEMSEARCH,
+    payload
+})
+
+export const isAdmin = (payload)=>({
+    type:ISADMIN,
     payload
 })

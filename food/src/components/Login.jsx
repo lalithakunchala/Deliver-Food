@@ -1,16 +1,19 @@
 import React from 'react';
 import Home from './Home';
+import store from '../redux/store';
 import Header from './Header';
+import { connect } from "react-redux";
+import { deleteitem, additem,adddish ,ordermore,orderless,itemSearch,isAuth} from '../redux/action';
 
-export default class Login extends React.Component {
+
+
+ class Login extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        isAuth: true,
-        name: "",
-        password: "",
-        item: "",
-        data: []
+        Auth:false,
+        name :"",
+        password:""
       };
     }
     handleChange = e => {
@@ -22,27 +25,28 @@ export default class Login extends React.Component {
     handleAuth = () => {
       if (this.state.name === "lalitha" && this.state.password === "admin") {
         this.setState({
-          isAuth: !this.state.isAuth
+          Auth: !this.state.Auth
         });
       }
       else{
         alert("Enter correct details")
       }
     };
-    handleAdd = product => {
-      console.log("item");
-      this.setState({
-        data: [...this.state.data, product]
-      });
-    };
+    
   
     render() {
-      const { isAuth } = this.state;
-      console.log(this.state.data);
+      const {auth} = store.getState();
+      const {additem, deleteitem,ordermore,orderless,itemSearch,isAuth} = this.props;
+      const {Auth} = this.state;
+      const obj = {
+        name:this.state.name,
+        password:this.state.password
+      }
+      console.log(Auth);
       return (
         <div>
           <Header />
-          {isAuth ? (
+          
             <div style={{textAlign:"center"}}>
               <h1>Login</h1>
               <input
@@ -61,13 +65,30 @@ export default class Login extends React.Component {
                 onChange={this.handleChange}
               />
               <br/>
-              <button onClick={this.handleAuth}>Login</button>
+              <button id={Auth} onClick={(e)=>isAuth(e.target.id),this.handleAuth}>Login</button>
             </div>
-          ) : (
-            
-              <Home/>
-          )}
+          
         </div>
       );
     }
   }
+
+  const mapStateToProps = state => ({
+    order: state.order,
+    dishes:state.dishes
+  });
+  
+  const mapDispatchToProps = dispatch => ({
+    ordermore: item => dispatch(ordermore(item)),
+    orderless: item => dispatch(orderless(item)),
+  adddish: item => dispatch(adddish(item)),
+  deleteitem: item => dispatch(deleteitem(item)),
+  additem : item => dispatch(additem(item)), 
+    itemSearch : item => dispatch(itemSearch(item)),
+    isAuth :item => dispatch(isAuth(item))
+  });
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login);

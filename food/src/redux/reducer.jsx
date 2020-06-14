@@ -1,4 +1,4 @@
-import {ORDERMORE,ADDDISH, DELETEITEM,ADDITEM,ORDERLESS,RESTAURANT,ITEMSEARCH} from "./actionTypes";
+import {ORDERMORE,ADDDISH, DELETEITEM,ADDITEM,ORDERLESS,RESTAURANT,ITEMSEARCH,ISAUTH} from "./actionTypes";
 import data from '../components/data.json'
 
 const initState = {
@@ -6,7 +6,9 @@ const initState = {
     order:[],
     dishes :[...data],
     name :"",
-    item :""
+    item :"",
+    auth :false,
+    admin :false
 }
 
 const  reducer = (state=initState,action)=>{
@@ -44,6 +46,15 @@ const  reducer = (state=initState,action)=>{
                 dishes : [...state.dishes,action.payload]
             }
 
+        //     "item":"chicken manchuriya",
+        // "price":250,
+        // "rating":4,
+        // "id":18,
+        // "quantity":1,
+        // "costtwo":400,
+        // "restaurant":"Taj",
+        // "img":"https://i.imgur.com/JdRqOYCb.jpg"
+
             case ADDITEM:
                 console.log(action.payload)
                 var ord = state.dishes.find(ele => ele.id===Number(action.payload));
@@ -80,6 +91,14 @@ const  reducer = (state=initState,action)=>{
             return {
                 ...state,
                 item:action.payload
+            }
+
+            case ISAUTH:
+            console.log(action.payload)
+
+            return {
+                ...state,
+                auth:action.payload
             }
 
             default :
