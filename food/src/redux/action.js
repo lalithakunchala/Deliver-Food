@@ -1,7 +1,12 @@
-import {ORDER,ADDDISH,ADDITEM,DELETEITEM} from './actionTypes';
+import {ORDERLESS,ORDERMORE,ADDDISH,ADDITEM,DELETEITEM} from './actionTypes';
 
-export const order = (payload)=>({
-    type:ORDER,
+export const ordermore = (payload)=>({
+    type:ORDERMORE,
+    payload
+})
+
+export const orderless = (payload)=>({
+    type:ORDERLESS,
     payload
 })
 

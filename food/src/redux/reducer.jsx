@@ -1,4 +1,4 @@
-import {ORDER,ADDDISH, DELETEITEM,ADDITEM} from "./actionTypes";
+import {ORDERMORE,ADDDISH, DELETEITEM,ADDITEM,ORDERLESS} from "./actionTypes";
 import data from '../components/data.json'
 
 const initState = {
@@ -9,11 +9,30 @@ const initState = {
 
 const  reducer = (state=initState,action)=>{
     switch(action.type){
-        case ORDER:
+        case ORDERMORE:
+            console.log(action.payload)
+                
+                var newarr = state.order.map(item=>(
+                    Number(item.id)!==Number(action.payload)? item:{...item,quantity:Number(item.quantity)+1,total:Number(item.price)*Number(item.quantity+1)}
+                ))
+                console.log(newarr);
             return {
                 ...state,
-                value : state.value +1,
-                order : [...state.order,action.payload]
+                order : newarr,
+                
+            }
+
+            case ORDERLESS:
+            console.log(action.payload)
+                
+                var newarr = state.order.map(item=>(
+                    Number(item.id)!==Number(action.payload)? item:{...item,quantity:Number(item.quantity)-1,total:Number(item.price)*Number(item.quantity-1)}
+                ))
+                console.log(newarr);
+            return {
+                ...state,
+                order : newarr,
+                
             }
 
             case ADDDISH:
@@ -24,10 +43,12 @@ const  reducer = (state=initState,action)=>{
             case ADDITEM:
                 console.log(action.payload)
                 var ord = state.dishes.find(ele => ele.id===Number(action.payload));
+                ord = {...ord,total:ord.price*ord.quantity}
                 console.log(ord);
             return {
                 ...state,
-                order : [...state.order,ord]
+                order : [...state.order,ord],
+                
             }
             case DELETEITEM:
             console.log(action.payload);
