@@ -25,6 +25,9 @@ export default class Login extends React.Component {
           isAuth: !this.state.isAuth
         });
       }
+      else{
+        alert("Enter correct details")
+      }
     };
     handleAdd = product => {
       console.log("item");

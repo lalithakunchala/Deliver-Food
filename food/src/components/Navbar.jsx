@@ -14,6 +14,7 @@ import {Link} from 'react-router-dom';
                 <Link to="/">HOME</Link> 
                 <Link to="/login">LOGIN</Link>
                 <Link to="/restaurant">RESTAURANT</Link>
+                
             </div>
         )
     }

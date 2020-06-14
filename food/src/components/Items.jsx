@@ -3,23 +3,27 @@ import store from '../redux/store';
 import Styles from './Styles.module.css';
 import Header from './Header';
 import { connect } from "react-redux";
-import { deleteitem, additem,adddish ,ordermore,orderless} from '../redux/action';
+import { deleteitem, additem,adddish ,ordermore,orderless,itemSearch} from '../redux/action';
 
-class Order extends React.Component{
+class Items extends React.Component{
     constructor(props){
         super(props)
         
     }
     render(){
-        const {order} = store.getState();
+        const {dishes,order,item} = store.getState();
         console.log(store.getState());
-        const {additem, deleteitem,ordermore,orderless} = this.props;
+        const {additem, deleteitem,ordermore,orderless,itemSearch} = this.props;
+       
         return(
         <>
             <Header/>
             <div className={Styles.restcard}>
                 
-                {order&&order.map((item,index)=>(
+                {dishes.filter((ele,index)=>{
+                    return ele.item === item
+                })
+                .map((item,index)=>(
 
                     <div key ={index} class="card" style={{width: "22rem"}}>
                     <img class="card-img-top" src={item.img} alt="Card image cap"/>
@@ -46,10 +50,8 @@ class Order extends React.Component{
                     </div>
                       
                         
-                ))}  
-                
-                </div>  
-                {!order.length? <div style={{width:"250px",margin:"auto",padding:"20px"}}><h2>No Orders</h2></div>:""}        
+                ))}   
+                </div>         
         </>
         )}}
 
@@ -59,14 +61,15 @@ class Order extends React.Component{
           });
           
           const mapDispatchToProps = dispatch => ({
-              ordermore: item => dispatch(ordermore(item)),
-              orderless: item => dispatch(orderless(item)),
-            adddish: item => dispatch(adddish(item)),
-            deleteitem: item => dispatch(deleteitem(item)),
-            additem : item => dispatch(additem(item))
+            ordermore: item => dispatch(ordermore(item)),
+            orderless: item => dispatch(orderless(item)),
+          adddish: item => dispatch(adddish(item)),
+          deleteitem: item => dispatch(deleteitem(item)),
+          additem : item => dispatch(additem(item)), 
+            itemSearch : item => dispatch(itemSearch(item))
           });
           
           export default connect(
             mapStateToProps,
             mapDispatchToProps
-          )(Order);
+          )(Items);

@@ -1,10 +1,12 @@
-import {ORDERMORE,ADDDISH, DELETEITEM,ADDITEM,ORDERLESS} from "./actionTypes";
+import {ORDERMORE,ADDDISH, DELETEITEM,ADDITEM,ORDERLESS,RESTAURANT,ITEMSEARCH} from "./actionTypes";
 import data from '../components/data.json'
 
 const initState = {
     value:0,
     order:[],
-    dishes :[...data]
+    dishes :[...data],
+    name :"",
+    item :""
 }
 
 const  reducer = (state=initState,action)=>{
@@ -30,6 +32,7 @@ const  reducer = (state=initState,action)=>{
                 ))
                 console.log(newarr);
             return {
+
                 ...state,
                 order : newarr,
                 
@@ -40,10 +43,11 @@ const  reducer = (state=initState,action)=>{
                 ...state,
                 dishes : [...state.dishes,action.payload]
             }
+
             case ADDITEM:
                 console.log(action.payload)
                 var ord = state.dishes.find(ele => ele.id===Number(action.payload));
-                ord = {...ord,total:ord.price*ord.quantity}
+                ord = {...ord,total:Number(ord.price)*Number(ord.quantity)}
                 console.log(ord);
             return {
                 ...state,
@@ -61,6 +65,23 @@ const  reducer = (state=initState,action)=>{
                 ...state,
                 order : arr
             }
+
+            case RESTAURANT:
+            console.log(action.payload);
+
+            return {
+                ...state,
+                name:action.payload
+            }
+
+            case ITEMSEARCH:
+            console.log(action.payload);
+
+            return {
+                ...state,
+                item:action.payload
+            }
+
             default :
             return state;
     }

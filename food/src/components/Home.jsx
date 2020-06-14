@@ -2,7 +2,7 @@ import React from 'react';
 import store from '../redux/store';
 import Styles from './Styles.module.css';
 import { connect } from "react-redux";
-import { deleteitem, additem,adddish } from '../redux/action';
+import { deleteitem, additem,adddish,restaurant } from '../redux/action';
 import {Link} from "react-router-dom";
 
 
@@ -13,7 +13,7 @@ import {Link} from "react-router-dom";
         render(){
 
             console.log(store.getState());
-            const {dishes,order} = store.getState();
+            const {dishes,order,name} = store.getState();
             const {additem, deleteitem} = this.props;
 
             return (
@@ -60,12 +60,12 @@ import {Link} from "react-router-dom";
 
 const mapStateToProps = state => ({
     order: state.order,
-    dishes:state.dishes
+    dishes:state.dishes,
+    restaurant:state.restaurant
   });
   
   const mapDispatchToProps = dispatch => ({
-    adddish: item => dispatch(adddish(item)),
-    deleteitem: item => dispatch(deleteitem(item)),
+    restaurant : item => dispatch(restaurant(item)),
     additem : item => dispatch(additem(item))
   });
   
