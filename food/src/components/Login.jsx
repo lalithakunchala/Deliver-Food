@@ -3,6 +3,8 @@ import Home from './Home';
 import store from '../redux/store';
 import Header from './Header';
 import { connect } from "react-redux";
+import SignInForm from "./SignInForm";
+import Button from "./Button";
 import { deleteitem, additem,adddish ,ordermore,orderless,itemSearch,isAuth} from '../redux/action';
 
 
@@ -11,7 +13,7 @@ import { deleteitem, additem,adddish ,ordermore,orderless,itemSearch,isAuth} fro
     constructor(props) {
       super(props);
       this.state = {
-        Auth:false,
+        // Auth:false,
         name :"",
         password:""
       };
@@ -19,36 +21,42 @@ import { deleteitem, additem,adddish ,ordermore,orderless,itemSearch,isAuth} fro
     handleChange = e => {
       this.setState({
         [e.target.name]: e.target.value
-      });
-    };
+      },
+      () =>
+        this.props.dispatch({
+          type: "USERNAME",
+          payload: this.state.values
+        })
+    )
+      };
   
-    handleAuth = () => {
-      if (this.state.name === "lalitha" && this.state.password === "admin") {
-        this.setState({
-          Auth: !this.state.Auth
-        });
-      }
-      else{
-        alert("Enter correct details")
-      }
-    };
+    // handleAuth = (e) => {
+    //   e.preventDefault();
+    //   // if (this.state.name === "lalitha" && this.state.password === "admin") {
+    //   //   this.setState({
+    //   //     Auth: !this.state.Auth
+    //   //   });
+    //   // }
+    //   // else{
+    //   //   alert("Enter correct details")
+    //   // }
+    //   isAuth(e.target)
+    // };
     
   
     render() {
       const {auth} = store.getState();
       const {additem, deleteitem,ordermore,orderless,itemSearch,isAuth} = this.props;
-      const {Auth} = this.state;
-      const obj = {
-        name:this.state.name,
-        password:this.state.password
-      }
-      console.log(Auth);
+      console.log(auth);
+      
       return (
         <div>
           <Header />
+          <SignInForm />
+            <Button/>
           
-            <div style={{textAlign:"center"}}>
-              <h1>Login</h1>
+            
+              {/* <form>
               <input
                 type="text"
                 name="name"
@@ -56,7 +64,7 @@ import { deleteitem, additem,adddish ,ordermore,orderless,itemSearch,isAuth} fro
                 placeholder="name"
                 onChange={this.handleChange}
               />
-              <br/>
+              
               <input
                 type="password"
                 name="password"
@@ -64,11 +72,38 @@ import { deleteitem, additem,adddish ,ordermore,orderless,itemSearch,isAuth} fro
                 placeholder="password"
                 onChange={this.handleChange}
               />
-              <br/>
-              <button id={Auth} onClick={(e)=>isAuth(e.target.id),this.handleAuth}>Login</button>
-            </div>
+              <input type="submit"  >Login</input>
+              </form> */}
           
-        </div>
+          {/* <form onSubmit={(e)=>isAuth(e.target)}>
+      <div className="main">
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your Name"
+          value={this.state.name}
+          onChange={this.handleChange}
+        />
+      </div>
+      
+      <div className="main">
+        <label >Password:</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your Password"
+          value={this.state.password}
+          onChange={this.handleChange}
+        />
+      </div>
+      
+      <div className="button">
+        <button type="submit">Submit</button>
+      </div>
+    </form>*/}
+          
+        </div> 
       );
     }
   }
@@ -85,7 +120,8 @@ import { deleteitem, additem,adddish ,ordermore,orderless,itemSearch,isAuth} fro
   deleteitem: item => dispatch(deleteitem(item)),
   additem : item => dispatch(additem(item)), 
     itemSearch : item => dispatch(itemSearch(item)),
-    isAuth :item => dispatch(isAuth(item))
+    isAuth :item => dispatch(isAuth(item)),
+    // username:item => dispatch(username(item))
   });
   
   export default connect(

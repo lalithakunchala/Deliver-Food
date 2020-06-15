@@ -1,4 +1,14 @@
-import {ORDERLESS,ORDERMORE,ADDDISH,ADDITEM,DELETEITEM,RESTAURANT,ITEMSEARCH,ISAUTH,ISADMIN} from './actionTypes';
+import {ORDERLESS,ORDERMORE,ADDDISH,ADDITEM,DELETEITEM,RESTAURANT,ITEMSEARCH,ISAUTH,ISADMIN,USERNAME,USERPASSWORD,SET_FORMVALUES,SUBMIT_FORM} from './actionTypes';
+
+export const username = (payload)=>({
+    type:USERNAME,
+    payload
+})
+
+export const userpassword = (payload)=>({
+    type:USERPASSWORD,
+    payload
+})
 
 export const ordermore = (payload)=>({
     type:ORDERMORE,
@@ -16,11 +26,15 @@ export const adddish = (payload)=>({
 })
 
 export const isAuth = (payload)=>({
+    
     type:ISAUTH,
     payload
 })
 
-export const additem = (payload)=>({
+export const additem = (payload)=>(
+    payload.preventDefault(),
+    
+    {
     type:ADDITEM,
     payload
 })

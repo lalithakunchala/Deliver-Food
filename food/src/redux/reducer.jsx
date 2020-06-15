@@ -1,4 +1,4 @@
-import {ORDERMORE,ADDDISH, DELETEITEM,ADDITEM,ORDERLESS,RESTAURANT,ITEMSEARCH,ISAUTH} from "./actionTypes";
+import {ORDERMORE,ADDDISH, DELETEITEM,ADDITEM,ORDERLESS,RESTAURANT,ITEMSEARCH,ISAUTH, ISADMIN,USERNAME,USERPASSWORD,SET_FORMVALUES,SUBMIT_FORM} from "./actionTypes";
 import data from '../components/data.json'
 
 const initState = {
@@ -8,11 +8,43 @@ const initState = {
     name :"",
     item :"",
     auth :false,
-    admin :false
+    admin :false,
+    username:{},
+    userpassword:""
 }
 
 const  reducer = (state=initState,action)=>{
     switch(action.type){
+        case "SET_FORMVALUES":
+            return {
+              ...state,
+              formValues: action.payload
+            };
+          case "SUBMIT_FORM":
+            
+            console.log("Form Data - ", state.formValues);
+            return {
+              ...state,
+              username:state.formvalues
+            };
+
+        case USERNAME:
+            console.log(action.payload)
+                
+            return {
+                ...state,
+                username : action.payload,
+                
+            }
+            case USERPASSWORD:
+            console.log(action.payload)
+                
+                
+            return {
+                ...state,
+            userpassword : newarr,
+                
+            }
         case ORDERMORE:
             console.log(action.payload)
                 
@@ -94,12 +126,32 @@ const  reducer = (state=initState,action)=>{
             }
 
             case ISAUTH:
+                
             console.log(action.payload)
+            console.log(action.payload.password)
+            if (action.payload.name === "lalitha" && action.payload.password === "lalitha") {
+                return {
+                    ...state,
+                    auth:true
+                }
+              }
+              else{
+                alert("Enter correct details")
+              }
 
-            return {
-                ...state,
-                auth:action.payload
-            }
+              case ISADMIN:
+            console.log(action.payload.name)
+            console.log(action.payload.password)
+            if (action.payload.name === "restaurant" && action.payload.password === "restaurant") {
+                return {
+                    ...state,
+                    admin:true
+                }
+              }
+              else{
+                alert("Enter correct details")
+              }
+
 
             default :
             return state;

@@ -7,3 +7,7 @@ export const RESTAURANT = "RESTAURANT";
 export const ITEMSEARCH = "ITEMSEARCH";
 export const ISAUTH = "ISAUTH";
 export const ISADMIN = "ISADMIN";
+export const USERPASSWORD = "USERPASSWORD";
+export const USERNAME = "USERNAME";
+export const SET_FORMVALUES = "SET_FORMVALUES"
+// export const SUBMIT_FORM = "SUBMIT_FORM"

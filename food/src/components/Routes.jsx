@@ -7,6 +7,8 @@ import User from './User';
 import Restaurant from './Restaurant';
 import Specific from './Specific';
 import Items from './Items';
+import SignInForm from "./SignInForm";
+import Button from "./Button";
 
 function Routes(){
     const {auth,isAdmin} = store.getState();
@@ -14,7 +16,7 @@ function Routes(){
     return(
         <Switch>
             <Route path="/" exact component={User}/>
-            <Route path="/login" component={Login}/>
+            <Route path="/SignInForm" component={Login}/>
             <Route path="/restaurant"  component={Restaurant}/>
             <Route path="/order" component={Order}/>
             {auth?<Route path ="/specific"  component={Specific}/>:<Login/>}
